@@ -48,12 +48,16 @@ public class ModelToObjectMapper
 
     private void OnUpdateModel(JObject jObject)
     {
-        Debug.Log("OnInitData");
-        var model = jObject.ToObject<UpdateModel>();
+        //Debug.Log("OnInitData");
+        /*
         Debug.Log(model.ClassName);
         foreach (var playerPositionModel in model.PlayerPositionModels)
         {
             Debug.Log(playerPositionModel.Position);
         }
+        */
+
+        var model = jObject.ToObject<UpdateModel>();
+        clientController.UpdatePlayerModel(model);
     }
 }
