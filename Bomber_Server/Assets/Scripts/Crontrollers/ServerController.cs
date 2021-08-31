@@ -9,7 +9,15 @@ public class ServerController : MonoBehaviour
     [SerializeField]
     private PlayerController playerControllerPrefab;
 
+    [SerializeField]
+    private CoinController coinController;
+
+    [SerializeField]
+    private SpawnArea spawnArea;
+
     private Dictionary<int, PlayerController> playerControllers = new Dictionary<int, PlayerController>();
+
+    public Vector3 RandomSpawnPoint() => spawnArea.RandomSpawnPoint();
 
     public void CreatePlayer(PeerConnection peerConnection)
     {
