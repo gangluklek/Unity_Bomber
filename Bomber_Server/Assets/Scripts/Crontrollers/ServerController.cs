@@ -19,4 +19,24 @@ public class ServerController : MonoBehaviour
         playerControllers.Add(id, playerController);
         peerConnection.AddPlayer(playerController);
     }
+
+    public void UpdateData()
+    {
+        var model = new UpdateModel();
+
+        foreach (var clientConnection in server.PeerConnections.Values)
+        {
+            var player = clientConnection.Player;
+            if (player != null)
+            {
+                if (player.isUpdatePosition)
+                {
+                    var playerPositionModel = new PlayerPositionModel { PlayerId = player.Id, Position = player.Position };
+                    model.PlayerPositionModels.Add(playerPositionModel);
+                    player.isUpdatePosition = false;
+                }
+            }
+        }
+        server.SendAll(model);
+    }
 }

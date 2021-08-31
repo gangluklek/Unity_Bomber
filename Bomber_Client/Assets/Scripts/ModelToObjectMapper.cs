@@ -12,7 +12,8 @@ public class ModelToObjectMapper
     private Dictionary<string, Action<JObject>> CreateDeserializes() => new Dictionary<string, Action<JObject>>
     {
         [CreatePlayerModel.CLASS_NAME] = OnCreatePlayerModel,
-        [InitDataModel.CLASS_NAME] = OnInitData
+        [InitDataModel.CLASS_NAME] = OnInitData,
+        [UpdateModel.CLASS_NAME] = OnUpdateModel,
     };
 
     public ModelToObjectMapper(ClientController clientController)
@@ -43,5 +44,16 @@ public class ModelToObjectMapper
         Debug.Log("OnInitData");
         var model = jObject.ToObject<InitDataModel>();
         clientController.OnInitData(model);
+    }
+
+    private void OnUpdateModel(JObject jObject)
+    {
+        Debug.Log("OnInitData");
+        var model = jObject.ToObject<UpdateModel>();
+        Debug.Log(model.ClassName);
+        foreach (var playerPositionModel in model.PlayerPositionModels)
+        {
+            Debug.Log(playerPositionModel.Position);
+        }
     }
 }
