@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -5,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     private int id;
     private Client client;
+    private bool isCurrentPlayer;
 
     public int Id => id;
 
@@ -23,5 +25,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+    }
+
+    public void SetCurrentPlayer()
+    {
+        isCurrentPlayer = true;
     }
 }

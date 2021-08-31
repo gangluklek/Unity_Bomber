@@ -24,6 +24,7 @@ public class ClientController : MonoBehaviour
         var id = model.Id;
         playerController.Setup(model, client);
         playerControllers.Add(id, playerController);
+        CheckIsCurrentPlayer(playerController);
     }
 
     public void OnInitData(InitDataModel model)
@@ -32,6 +33,14 @@ public class ClientController : MonoBehaviour
         foreach (var playerModel in model.CreatePlayerModels)
         {
             OnCreatePlayer(playerModel);
+        }
+    }
+
+    private void CheckIsCurrentPlayer(PlayerController playerController)
+    {
+        if (playerController.Id == playerId)
+        {
+            playerController.SetCurrentPlayer();
         }
     }
 }
