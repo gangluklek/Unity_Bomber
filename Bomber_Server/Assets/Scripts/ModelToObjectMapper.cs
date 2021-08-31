@@ -18,7 +18,8 @@ public class ModelToObjectMapper
     private void OnMovePlayer(PeerConnection peerConnection, JObject jObject)
     {
         var model = jObject.ToObject<MovePlayerModel>();
-        Debug.Log($"{model.ClassName} : ( x : {model.Target.X}, y : {model.Target.Z} )");
+        //Debug.Log($"{model.ClassName} : ( x : {model.Target.X}, y : {model.Target.Z} )");
+        peerConnection.Player.Move(model.Target.ToUnityVector3());
     }
 
     public ModelToObjectMapper(ServerController serverController)
