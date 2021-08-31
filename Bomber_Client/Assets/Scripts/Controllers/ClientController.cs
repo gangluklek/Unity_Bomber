@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +5,7 @@ public class ClientController : MonoBehaviour
 {
     [SerializeField] private PlayerController playerControllerPrefab;
     [SerializeField] private Client client;
-		private int playerId = -1;
+    private int playerId = -1;
     private Dictionary<int, PlayerController> playerControllers = new Dictionary<int, PlayerController>();
 
     // Start is called before the first frame update
@@ -28,7 +26,7 @@ public class ClientController : MonoBehaviour
         playerControllers.Add(id, playerController);
     }
 
-		public void OnInitData(InitDataModel model)
+    public void OnInitData(InitDataModel model)
     {
         playerId = model.PlayerId;
         foreach (var playerModel in model.CreatePlayerModels)

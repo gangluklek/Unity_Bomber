@@ -1,6 +1,5 @@
 using LiteNetLib;
 using LiteNetLib.Utils;
-using System;
 using Newtonsoft.Json;
 
 public class PeerConnection
@@ -9,7 +8,7 @@ public class PeerConnection
     private Server server;
     private NetPeer peer;
     private int id;
-    
+
     public int Id => id;
     public PlayerController Player => playerController;
     public int PlayerId => playerController.Id;
@@ -29,6 +28,7 @@ public class PeerConnection
     {
         this.playerController = playerController;
     }
+
     public void Disconnected()
     {
         server.Remove(this);

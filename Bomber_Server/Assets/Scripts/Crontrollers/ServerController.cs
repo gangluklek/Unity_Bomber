@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +17,6 @@ public class ServerController : MonoBehaviour
         var id = peerConnection.Id;
         playerController.Setup(id, server);
         playerControllers.Add(id, playerController);
-		peerConnection.AddPlayer(playerController);
+        peerConnection.AddPlayer(playerController);
     }
 }

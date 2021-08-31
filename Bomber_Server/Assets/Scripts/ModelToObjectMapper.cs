@@ -1,8 +1,8 @@
 using LiteNetLib;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ModelToObjectMapper
 {
@@ -14,7 +14,7 @@ public class ModelToObjectMapper
         //TODO [Model.CLASS_NAME] = callFunction,
     };
 
-     public ModelToObjectMapper(ServerController serverController)
+    public ModelToObjectMapper(ServerController serverController)
     {
         Deserializes = CreateDeserializes();
         this.serverController = serverController;
@@ -31,6 +31,4 @@ public class ModelToObjectMapper
             Deserializes[className](peerConnection, jObject);
         }
     }
-    
-
 }

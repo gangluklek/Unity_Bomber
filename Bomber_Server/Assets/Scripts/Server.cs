@@ -1,11 +1,11 @@
 using LiteNetLib;
+using Newtonsoft.Json;
+
+//for Dictionary
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
-using Newtonsoft.Json;
-//for Dictionary
-using System.Collections;
-using System.Collections.Generic;
 
 public class Server : MonoBehaviour, INetEventListener
 {
@@ -24,6 +24,7 @@ public class Server : MonoBehaviour, INetEventListener
         server = new NetManager(this);
         server.Start(PORT);
     }
+
     private void Start()
     {
         modelToObjectMapper = new ModelToObjectMapper(serverController);
@@ -48,18 +49,27 @@ public class Server : MonoBehaviour, INetEventListener
             clientConnection.Send(json);
         }
     }
-    public void OnConnectionRequest(ConnectionRequest request){
+
+    public void OnConnectionRequest(ConnectionRequest request)
+    {
         Debug.Log("OnConnectionRequest");
         CreatePeerConnection(request.AcceptIfKey(KEY));
     }
+
     public void OnNetworkError(IPEndPoint endPoint, SocketError socketError) => Debug.Log("OnNetworkError");
-    public void OnNetworkLatencyUpdate(NetPeer peer, int latency) {}
+
+    public void OnNetworkLatencyUpdate(NetPeer peer, int latency)
+    {
+    }
+
     public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
     {
-         Debug.Log("OnNetworkReceive");
+        Debug.Log("OnNetworkReceive");
         modelToObjectMapper.DeserializeToFunction(peer, reader.GetString());
     }
+
     public void OnNetworkReceiveUnconnected(IPEndPoint remoteEndPoint, NetPacketReader reader, UnconnectedMessageType messageType) => Debug.Log("OnNetworkReceiveUnconnected");
+
     private void CreatePeerConnection(NetPeer peer)
     {
         var id = clientCurrnetId++;
@@ -85,10 +95,11 @@ public class Server : MonoBehaviour, INetEventListener
         peerConnection.Send(model);
     }
 
-     public void OnPeerConnected(NetPeer peer)
+    public void OnPeerConnected(NetPeer peer)
     {
         Debug.Log("OnPeerConnected");
     }
+
     public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) => Debug.Log("OnPeerDisconnected");
 
     public void Remove(PeerConnection peerConnection)
