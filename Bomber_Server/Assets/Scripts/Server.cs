@@ -10,6 +10,7 @@ using UnityEngine;
 public class Server : MonoBehaviour, INetEventListener
 {
     [SerializeField] private ServerController serverController;
+    [SerializeField] private CoinController coinController;
     public const short PORT = 9050;
     public const string KEY = "MYKEY";
     private NetManager server;
@@ -89,6 +90,13 @@ public class Server : MonoBehaviour, INetEventListener
                 var createPlayerModel = new CreatePlayerModel { Id = player.Id, Position = player.Position };
                 model.CreatePlayerModels.Add(createPlayerModel);
             }
+        }
+
+        foreach (var pair in coinController.Coins)
+        {
+            var coinId = pair.Key;
+            var position = pair.Value.transform.position;
+            model.CreateCoins.Add(coinId, new Vector3Model(position));
         }
         peerConnections.Add(id, peerConnection);
         serverController.CreatePlayer(peerConnection);
