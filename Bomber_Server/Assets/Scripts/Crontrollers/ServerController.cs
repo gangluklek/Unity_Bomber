@@ -45,6 +45,21 @@ public class ServerController : MonoBehaviour
                 }
             }
         }
+
+        foreach (var pair in coinController.NewCoinPositions)
+        {
+            var id = pair.Key;
+            var position = new Vector3Model(pair.Value);
+            model.CreateCoins.Add(id, position);
+        }
+        coinController.ResetNewCoins();
+
+        foreach (var coinId in coinController.DeletedCoinIds)
+        {
+            model.DeletedCoins.Add(coinId);
+        }
+        coinController.ResetDeletedCoins();
+
         server.SendAll(model);
     }
 }
