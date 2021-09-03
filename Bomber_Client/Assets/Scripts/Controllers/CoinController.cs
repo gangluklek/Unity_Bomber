@@ -29,4 +29,18 @@ public class CoinController : MonoBehaviour
             coins.Add(id, coin);
         }
     }
+
+    public void OnUpdate(UpdateModel model)
+    {
+        foreach (var id in model.DeletedCoins)
+        {
+            if (coins.TryGetValue(id, out var coin))
+            {
+                coins.Remove(id);
+                Destroy(coin.gameObject);
+            }
+        }
+
+        OnCreateCoins(model.CreateCoins);
+    }
 }

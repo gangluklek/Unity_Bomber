@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControllerPrefab: {fileID: 7861883608241820766, guid: 21a7b0458b1204778b933f7f3d3bfde9, type: 3}
-  coinController: {fileID: 0}
+  coinController: {fileID: 865283713}
   client: {fileID: 429585390}
 --- !u!1 &593575348
 GameObject:

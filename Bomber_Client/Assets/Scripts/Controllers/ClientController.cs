@@ -62,5 +62,7 @@ public class ClientController : MonoBehaviour
                 player.Move(playerPositionModel.Position);
             }
         }
+
+        coinController.OnUpdate(model);
     }
 }
