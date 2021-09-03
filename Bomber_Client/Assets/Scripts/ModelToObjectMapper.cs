@@ -51,7 +51,7 @@ public class ModelToObjectMapper
     {
         //Debug.Log("OnUpdatePlayerModel");
         var model = jObject.ToObject<UpdatePlayerModel>();
-        Debug.Log("Score " + model.Score);
+        clientController.OnUpdatePlayerModel(model);
     }
 
     private void OnUpdateModel(JObject jObject)
