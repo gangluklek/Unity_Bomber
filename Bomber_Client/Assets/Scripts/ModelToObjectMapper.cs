@@ -14,6 +14,7 @@ public class ModelToObjectMapper
         [CreatePlayerModel.CLASS_NAME] = OnCreatePlayerModel,
         [InitDataModel.CLASS_NAME] = OnInitData,
         [UpdateModel.CLASS_NAME] = OnUpdateModel,
+        [UpdatePlayerModel.CLASS_NAME] = OnUpdatePlayerModel,
     };
 
     public ModelToObjectMapper(ClientController clientController)
@@ -44,6 +45,13 @@ public class ModelToObjectMapper
         Debug.Log("OnInitData");
         var model = jObject.ToObject<InitDataModel>();
         clientController.OnInitData(model);
+    }
+
+    private void OnUpdatePlayerModel(JObject jObject)
+    {
+        //Debug.Log("OnUpdatePlayerModel");
+        var model = jObject.ToObject<UpdatePlayerModel>();
+        Debug.Log("Score " + model.Score);
     }
 
     private void OnUpdateModel(JObject jObject)

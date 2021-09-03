@@ -37,6 +37,14 @@ public class ServerController : MonoBehaviour
             var player = clientConnection.Player;
             if (player != null)
             {
+                if (player.isUpdateScore)
+                {
+                    var playerModel = new UpdatePlayerModel();
+                    playerModel.Score = player.Score;
+                    clientConnection.Send(playerModel);
+                    player.isUpdateScore = false;
+                }
+
                 if (player.isUpdatePosition)
                 {
                     var playerPositionModel = new PlayerPositionModel { PlayerId = player.Id, Position = player.Position };
