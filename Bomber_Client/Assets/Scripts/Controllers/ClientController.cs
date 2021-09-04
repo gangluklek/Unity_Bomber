@@ -65,6 +65,15 @@ public class ClientController : MonoBehaviour
             }
         }
 
+        foreach (var removeId in model.PlayerRemoveIds)
+        {
+            if (playerControllers.TryGetValue(removeId, out var player))
+            {
+                player.Remove();
+                playerControllers.Remove(removeId);
+            }
+        }
+
         coinController.OnUpdate(model);
     }
 

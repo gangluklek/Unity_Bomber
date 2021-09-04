@@ -66,7 +66,6 @@ public class ModelToObjectMapper
         */
 
         var model = jObject.ToObject<UpdateModel>();
-        Debug.Log("Count : " + model.PlayerRemoveIds.Count);
         clientController.UpdatePlayerModel(model);
     }
 }

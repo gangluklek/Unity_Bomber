@@ -65,4 +65,9 @@ public class Client : MonoBehaviour, INetEventListener
     {
         Debug.Log("OnPeerDisconnected");
     }
+
+    private void OnApplicationQuit()
+    {
+        client.DisconnectAll();
+    }
 }

@@ -47,4 +47,9 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = position;
     }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
+    }
 }
