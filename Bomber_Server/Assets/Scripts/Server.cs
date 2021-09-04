@@ -111,7 +111,15 @@ public class Server : MonoBehaviour, INetEventListener
         Debug.Log("OnPeerConnected");
     }
 
-    public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo) => Debug.Log("OnPeerDisconnected");
+    public void OnPeerDisconnected(NetPeer peer, DisconnectInfo disconnectInfo)
+    {
+        Debug.Log("OnPeerDisconnected");
+        if (peer != null)
+        {
+            var peerConnection = peer.Tag as PeerConnection;
+            peerConnection?.Disconnected();
+        }
+    }
 
     public void Remove(PeerConnection peerConnection)
     {

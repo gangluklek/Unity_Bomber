@@ -32,6 +32,7 @@ public class PeerConnection
 
     public void Disconnected()
     {
+        Player?.Remove();
         server.Remove(this);
     }
 }

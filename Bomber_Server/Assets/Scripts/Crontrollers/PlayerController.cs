@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private int id;
     private int score = 0;
+    private ServerController serverController;
     private Server server;
     private Vector3 target;
 
@@ -22,6 +23,11 @@ public class PlayerController : MonoBehaviour
 
     public bool isUpdatePosition;
     public bool isUpdateScore;
+
+    private void Awake()
+    {
+        serverController = FindObjectOfType<ServerController>();
+    }
 
     public void GetCoin()
     {
@@ -57,6 +63,12 @@ public class PlayerController : MonoBehaviour
         {
             gravitySpeed = 0;
         }
+    }
+
+    public void Remove()
+    {
+        serverController.Remove(this);
+        Destroy(gameObject);
     }
 
     internal void Setup(int id, Server server)

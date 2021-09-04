@@ -16,6 +16,7 @@ public class ServerController : MonoBehaviour
     private SpawnArea spawnArea;
 
     private Dictionary<int, PlayerController> playerControllers = new Dictionary<int, PlayerController>();
+    private List<int> playerRemoveIds = new List<int>();
 
     public Vector3 RandomSpawnPoint() => spawnArea.RandomSpawnPoint();
 
@@ -26,6 +27,13 @@ public class ServerController : MonoBehaviour
         playerController.Setup(id, server);
         playerControllers.Add(id, playerController);
         peerConnection.AddPlayer(playerController);
+    }
+
+    public void Remove(PlayerController playerController)
+    {
+        var playerId = playerController.Id;
+        playerRemoveIds.Add(playerId);
+        playerControllers.Remove(playerId);
     }
 
     public void UpdateData()
@@ -53,6 +61,8 @@ public class ServerController : MonoBehaviour
                 }
             }
         }
+
+        model.PlayerRemoveIds = playerRemoveIds;
 
         foreach (var pair in coinController.NewCoinPositions)
         {
