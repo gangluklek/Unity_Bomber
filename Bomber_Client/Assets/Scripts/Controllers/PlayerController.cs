@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
                 client.Send(new MovePlayerModel { Target = target });
             }
         }
+
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            client.Send(new LayBombModel());
+        }
     }
 
     public void SetCurrentPlayer()

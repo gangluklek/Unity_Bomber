@@ -13,6 +13,7 @@ public class ModelToObjectMapper
     {
         //TODO [Model.CLASS_NAME] = callFunction,
         [MovePlayerModel.CLASS_NAME] = OnMovePlayer,
+        [LayBombModel.CLASS_NAME] = OnLayBomb,
     };
 
     private void OnMovePlayer(PeerConnection peerConnection, JObject jObject)
@@ -20,6 +21,15 @@ public class ModelToObjectMapper
         var model = jObject.ToObject<MovePlayerModel>();
         //Debug.Log($"{model.ClassName} : ( x : {model.Target.X}, y : {model.Target.Z} )");
         peerConnection.Player.Move(model.Target.ToUnityVector3());
+    }
+
+    private void OnLayBomb(PeerConnection peerConnection, JObject jObject)
+    {
+        var model = jObject.ToObject<LayBombModel>();
+        if (model != null)
+        {
+            Debug.Log("OnLayBomb");
+        }
     }
 
     public ModelToObjectMapper(ServerController serverController)
