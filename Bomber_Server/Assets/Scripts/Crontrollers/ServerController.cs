@@ -13,6 +13,9 @@ public class ServerController : MonoBehaviour
     private CoinController coinController;
 
     [SerializeField]
+    private BombController bombController;
+
+    [SerializeField]
     private SpawnArea spawnArea;
 
     private Dictionary<int, PlayerController> playerControllers = new Dictionary<int, PlayerController>();
@@ -77,6 +80,17 @@ public class ServerController : MonoBehaviour
             model.DeletedCoins.Add(coinId);
         }
         coinController.ResetDeletedCoins();
+
+        foreach (var bomb in bombController.newBombs)
+        {
+            var bombModel = new BombModel
+            {
+                CurrnetTime = bomb.CurrentTime,
+                Position = bomb.transform.position
+            };
+            model.NewBombs.Add(bombModel);
+        }
+        bombController.ResetNewBomb();
 
         server.SendAll(model);
     }

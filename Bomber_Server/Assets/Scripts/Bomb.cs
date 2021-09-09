@@ -11,6 +11,7 @@ public class Bomb : MonoBehaviour
     private float time = 0;
     private BombController bombController;
     private int id;
+    public float CurrentTime => time;
 
     // Start is called before the first frame update
     private void Start()

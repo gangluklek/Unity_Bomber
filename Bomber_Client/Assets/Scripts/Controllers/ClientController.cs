@@ -74,6 +74,8 @@ public class ClientController : MonoBehaviour
             }
         }
 
+        //Debug.Log("model.NewBombs.Count" + model.NewBombs.Count);
+
         coinController.OnUpdate(model);
     }
 

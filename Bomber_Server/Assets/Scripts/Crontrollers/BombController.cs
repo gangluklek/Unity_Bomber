@@ -8,6 +8,9 @@ public class BombController : MonoBehaviour
     private Dictionary<int, Bomb> bombs = new Dictionary<int, Bomb>();
     private int curentBombIndex = 0;
 
+    public Dictionary<int, Bomb> Bombs => bombs;
+    public List<Bomb> newBombs = new List<Bomb>();
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -24,11 +27,11 @@ public class BombController : MonoBehaviour
         var id = curentBombIndex++;
         bomb.Setup(this, id);
         bombs.Add(id, bomb);
+        newBombs.Add(bomb);
         return bomb;
     }
 
-    public void Delete(Bomb bomb)
-    {
-        Destroy(bomb.gameObject);
-    }
+    public void ResetNewBomb() => newBombs = new List<Bomb>();
+
+    public void Delete(Bomb bomb) => Destroy(bomb.gameObject);
 }
