@@ -68,7 +68,7 @@ public class Server : MonoBehaviour, INetEventListener
 
     public void OnNetworkReceive(NetPeer peer, NetPacketReader reader, DeliveryMethod deliveryMethod)
     {
-        Debug.Log("OnNetworkReceive");
+        //Debug.Log("OnNetworkReceive");
         modelToObjectMapper.DeserializeToFunction(peer, reader.GetString());
     }
 
