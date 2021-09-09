@@ -20,6 +20,7 @@ public class ServerController : MonoBehaviour
 
     private Dictionary<int, PlayerController> playerControllers = new Dictionary<int, PlayerController>();
     private List<int> playerRemoveIds = new List<int>();
+    private List<int> playerDeathIds = new List<int>();
 
     public Vector3 RandomSpawnPoint() => spawnArea.RandomSpawnPoint();
 
@@ -65,7 +66,10 @@ public class ServerController : MonoBehaviour
             }
         }
 
-        model.PlayerRemoveIds = playerRemoveIds;
+        model.PlayerRemoveIds.AddRange(playerRemoveIds);
+        playerRemoveIds.Clear();
+        model.PlayerDeathIds.AddRange(playerDeathIds);
+        playerDeathIds.Clear();
 
         foreach (var pair in coinController.NewCoinPositions)
         {
@@ -93,5 +97,12 @@ public class ServerController : MonoBehaviour
         bombController.ResetNewBomb();
 
         server.SendAll(model);
+    }
+
+    public void Death(PlayerController playerController)
+    {
+        var id = playerController.Id;
+        playerControllers.Remove(id);
+        playerDeathIds.Add(id);
     }
 }

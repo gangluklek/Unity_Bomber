@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
     public void Death()
     {
         isDeath = true;
+        serverController.Death(this);
+        Destroy(gameObject);
     }
 
     public void LayBomb()

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ClientController : MonoBehaviour
@@ -77,6 +78,19 @@ public class ClientController : MonoBehaviour
             {
                 player.Remove();
                 playerControllers.Remove(removeId);
+            }
+        }
+
+        foreach (var deathId in model.PlayerDeathIds)
+        {
+            if (deathId == playerId)
+            {
+                SceneManager.LoadScene("GameOverScene");
+            }
+            if (playerControllers.TryGetValue(deathId, out var player))
+            {
+                player.Remove();
+                playerControllers.Remove(deathId);
             }
         }
 
