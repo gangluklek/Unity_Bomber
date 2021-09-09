@@ -41,7 +41,10 @@ public class ClientController : MonoBehaviour
 
         OnCreateCoins(model.CreateCoins);
 
-        Debug.Log("model.Bombs.Count" + model.Bombs.Count);
+        foreach (var bomb in model.Bombs)
+        {
+            bombController.Create(bomb);
+        }
     }
 
     private void OnCreateCoins(Dictionary<int, Vector3Model> createCoins)
