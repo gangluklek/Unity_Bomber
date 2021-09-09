@@ -28,7 +28,7 @@ public class ModelToObjectMapper
         var model = jObject.ToObject<LayBombModel>();
         if (model != null)
         {
-            Debug.Log("OnLayBomb");
+            peerConnection.Player.LayBomb();
         }
     }
 
@@ -40,7 +40,7 @@ public class ModelToObjectMapper
 
     public void DeserializeToFunction(NetPeer peer, string json)
     {
-        Debug.Log("DeserializeToFunction");
+        //Debug.Log("DeserializeToFunction");
         var jObject = JObject.Parse(json);
         if (jObject.TryGetValue("ClassName", out var value))
         {
