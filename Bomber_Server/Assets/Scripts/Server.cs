@@ -11,6 +11,7 @@ public class Server : MonoBehaviour, INetEventListener
 {
     [SerializeField] private ServerController serverController;
     [SerializeField] private CoinController coinController;
+    [SerializeField] private BombController bombController;
     public const short PORT = 9050;
     public const string KEY = "MYKEY";
     private NetManager server;
@@ -100,6 +101,12 @@ public class Server : MonoBehaviour, INetEventListener
         }
         peerConnections.Add(id, peerConnection);
         serverController.CreatePlayer(peerConnection);
+
+        foreach (var bomb in bombController.Bombs.Values)
+        {
+            var bombModel = new BombModel { CurrnetTime = bomb.CurrentTime, Position = bomb.transform.position };
+            model.Bombs.Add(bombModel);
+        }
 
         var playerId = peerConnection.PlayerId;
         model.PlayerId = playerId;

@@ -13,6 +13,8 @@ public class Bomb : MonoBehaviour
     private int id;
     public float CurrentTime => time;
 
+    public int Id => id;
+
     // Start is called before the first frame update
     private void Start()
     {

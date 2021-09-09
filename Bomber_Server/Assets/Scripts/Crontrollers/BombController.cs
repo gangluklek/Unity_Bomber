@@ -33,5 +33,9 @@ public class BombController : MonoBehaviour
 
     public void ResetNewBomb() => newBombs = new List<Bomb>();
 
-    public void Delete(Bomb bomb) => Destroy(bomb.gameObject);
+    public void Delete(Bomb bomb)
+    {
+        bombs.Remove(bomb.Id);
+        Destroy(bomb.gameObject);
+    }
 }

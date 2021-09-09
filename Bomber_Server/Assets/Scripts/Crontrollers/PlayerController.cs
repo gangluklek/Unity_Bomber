@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool isDeath = false;
     public int Id => id;
     public int Score => score;
-
+    public bool IsDeath => isDeath;
     public Vector3 Position => transform.position;
 
     public bool isUpdatePosition;
