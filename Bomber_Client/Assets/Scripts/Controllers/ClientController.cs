@@ -6,6 +6,7 @@ public class ClientController : MonoBehaviour
 {
     [SerializeField] private PlayerController playerControllerPrefab;
     [SerializeField] private CoinController coinController;
+    [SerializeField] private BombController bombController;
     [SerializeField] private Client client;
     [SerializeField] private Text scoreText;
     private int playerId = -1;
@@ -74,7 +75,10 @@ public class ClientController : MonoBehaviour
             }
         }
 
-        //Debug.Log("model.NewBombs.Count" + model.NewBombs.Count);
+        foreach (var bomb in model.NewBombs)
+        {
+            bombController.Create(bomb);
+        }
 
         coinController.OnUpdate(model);
     }
