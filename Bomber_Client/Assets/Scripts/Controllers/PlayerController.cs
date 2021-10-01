@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private int id;
     private Client client;
     private bool isCurrentPlayer;
+    private bool isDeath;
+    private bool isMyPlayer;
 
     private List<float> distances = new List<float>();
     private Vector3 lastPosition;
@@ -68,6 +71,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsRun", false);
         }
         lastPosition = transform.position;
+
+        if (isDeath)
+        {
+            animator.SetBool("IsDeath", true);
+        }
     }
 
     public void SetCurrentPlayer()
@@ -87,6 +95,20 @@ public class PlayerController : MonoBehaviour
 
     public void Remove()
     {
+        if (isDeath && isMyPlayer)
+        {
+            SceneManager.LoadScene("GameOverScene");
+        }
         Destroy(gameObject);
+    }
+
+    public void Death(bool isMyPlayer)
+    {
+        if (!isDeath)
+        {
+            this.isMyPlayer = isMyPlayer;
+            isDeath = true;
+            Invoke("Remove", 3f);
+        }
     }
 }
