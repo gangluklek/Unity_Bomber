@@ -436,6 +436,7 @@ MonoBehaviour:
   serverController: {fileID: 1881536980}
   coinController: {fileID: 402844432}
   bombController: {fileID: 1546731491}
+  PORT: 10090
 --- !u!114 &1881536980
 MonoBehaviour:
   m_ObjectHideFlags: 0

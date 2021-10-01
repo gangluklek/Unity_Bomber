@@ -77,9 +77,10 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector3 position)
     {
-        if (Vector3.Distance(transform.position, position) > Time.deltaTime * 0.125f)
+        var target = new Vector3(position.x, transform.position.y, position.z);
+        if (Vector3.Distance(transform.position, target) > Time.deltaTime * 0.125f)
         {
-            transform.LookAt(position, Vector3.up);
+            transform.LookAt(target, Vector3.up);
         }
         transform.position = position;
     }

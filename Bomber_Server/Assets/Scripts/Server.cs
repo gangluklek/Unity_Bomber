@@ -12,7 +12,7 @@ public class Server : MonoBehaviour, INetEventListener
     [SerializeField] private ServerController serverController;
     [SerializeField] private CoinController coinController;
     [SerializeField] private BombController bombController;
-    public const short PORT = 9050;
+    public short PORT = 9050;
     public const string KEY = "MYKEY";
     private NetManager server;
     private int clientCurrnetId = 0;

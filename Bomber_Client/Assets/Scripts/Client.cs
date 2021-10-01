@@ -12,7 +12,7 @@ public class Client : MonoBehaviour, INetEventListener
     private NetManager client;
     private NetPeer peer;
     private string host = "localhost";
-    private short port = 9050;
+    public short port = 9050;
     private ModelToObjectMapper modelToObjectMapper;
 
     private void Awake()
